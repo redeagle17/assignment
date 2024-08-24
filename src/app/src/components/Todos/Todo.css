@@ -1,0 +1,58 @@
+ .TodoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2b0364;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
+    margin: 100px auto;
+  }
+  
+  .input_btn {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  .todo-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid white;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    background-color: #2b0364;
+  }
+  .todo-input::placeholder {
+    color: #fff;
+  }
+  .todo-btn {
+    flex: 0 0 auto;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    background-color: #5a2e96;
+  }
+  
+  .todo-btn:hover {
+    background-color: #4e1b7d;
+  }
+  
+  .task-list {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  .task-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #5a2e96;
+    border-radius: 5px;
+    color: white;
+  }
+  
