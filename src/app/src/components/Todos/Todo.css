@@ -46,6 +46,8 @@
     padding: 10px;
     margin-top: 20px;
     border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
   }
   
   .task-item {
@@ -56,3 +58,20 @@
     color: white;
   }
   
+  .error{
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: rgb(237, 95, 95);
+    color: white;
+  }
+
+  .loading{
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: rgb(95, 237, 109);
+    color: white;
+  }
