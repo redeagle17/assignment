@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Todo.css";
-import axios from axios;
+import axios from "axios";
 
 function Todo() {
   const [task, setTask] = useState("");
