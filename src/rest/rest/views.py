@@ -14,12 +14,16 @@ class TodoListView(APIView):
     def get(self, request):
         try:
             todos = list(db.todos.find({}).sort('created_at', -1))
+
+            if not todos:
+                return Response({'error': 'No TODOs found'}, status=status.HTTP_404_NOT_FOUND)
+        
             for todo in todos:
                 todo['_id'] = str(todo['_id'])
 
             return Response(todos, status=status.HTTP_200_OK)
         except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error': 'Error in fetching TODO details'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
     def post(self, request):
         try:
@@ -32,5 +36,5 @@ class TodoListView(APIView):
 
             return Response({'message': 'TODO item created successfully'}, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error': 'Error in creating TODO item'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

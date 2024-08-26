@@ -10,11 +10,20 @@ function Todo() {
 
   const fetchTodos = async () => {
     setLoading(true);
+    setError("");
+    setTask([]);
     try {
       const response = await axios.get("http://localhost:8000/todos/");
-      setTodos(response.data);
+      if (response.status === 200) {
+        setTodos(response.data);
+      }
     } catch (err) {
-      setError("Failed to fetch TODOs. Please try again later.");
+      setLoading(false);
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError("Something went wrong. Please try again later");
+      }
     } finally {
       setTimeout(() => {
         setLoading(false);
@@ -24,16 +33,25 @@ function Todo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (task) {
-      try {
-        const payload = {
-          description: task,
-        };
-        await axios.post("http://localhost:8000/todos/", payload);
+    try {
+      const payload = {
+        description: task,
+      };
+
+      const response = await axios.post(
+        "http://localhost:8000/todos/",
+        payload
+      );
+      if (response.status === 201) {
+        setError("");
         setTask("");
         fetchTodos();
-      } catch (err) {
-        setError("Failed to add TODO. Please try again.");
+      }
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError("Something went wrong. Please try again later");
       }
     }
   };
